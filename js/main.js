@@ -287,35 +287,121 @@ import ranDom from '/js/getRandom.js';
 // 생성자 함수(prototype)----------------------------------------------------------------
 
 
-function User(first, last) {
-  this.firstName = first;
-  this.lastName = last;
-}
-User.prototype.getFullName = function() {
-  return `${this.firstName} ${this.lastName}`
-}
+// function User(first, last) {
+//   this.firstName = first;
+//   this.lastName = last;
+// }
+// User.prototype.getFullName = function() {
+//   return `${this.firstName} ${this.lastName}`
+// }
 
-// wonseok, amy, neo = 인스턴스
-const wonseok = new User('Song', 'wonseok');
-const amy = new User('Amy', 'Clarke');
-const neo = new User('Neo', 'Smith');
+// // wonseok, amy, neo = 인스턴스
+// const wonseok = new User('Song', 'wonseok');
+// const amy = new User('Amy', 'Clarke');
+// const neo = new User('Neo', 'Smith');
 
-console.log(wonseok.getFullName());
-console.log(amy);
-console.log(neo);
-
-
+// console.log(wonseok.getFullName());
+// console.log(amy);
+// console.log(neo);
 
 
+// this----------------------------------------------------------------
+// 일반(Normal) 함수는 호출 위치에서 따라 this 정의!
+// 화살표(Arrow) 함수는 자신이 선언된 함수 범위에서 this 정의!
+
+// function User(name) {
+//   this.name = name;
+// }
+
+// User.prototype.normal = function () {
+//   console.log(this.name);
+// }
+
+// User.prototype.arrow = () => {
+//   console.log(this.name);
+// }
+
+// const wonseok = new User('wonseok');
+
+// wonseok.normal();
+// wonseok.arrow();
+
+// 화살표(Arrow) 함수는 !!자신이 선언된 함수 범위!! 에서 this 정의! 
+// const timer = {
+//   name: 'wonseok !! ',
+//   timeout: function () {
+//     setTimeout(() => {
+//       console.log(this.name);
+//     }, 2000)
+//   }
+// };
+// timer.timeout();
 
 
+// ES6 Classes----------------------------------------------------------------
 
 
+// function User(first, last) {
+//   this.firstName = first;
+//   this.lastName = last;
+// }
+// User.prototype.getFullName = function() {
+//   return `${this.firstName} ${this.lastName}`
+// }
+
+// class User {
+//   constructor(first, last) {
+//     this.firstName = first;
+//     this.lastName = last;
+//   }
+//   getFullName() {
+//     return `${this.firstName} ${this.lastName}`
+//   }
+// }
+
+// const wonseok = new User('Song', 'wonseok');
+// const amy = new User('Amy', 'Clarke');
+// const neo = new User('Neo', 'Smith');
+
+// console.log(wonseok.getFullName());
+// console.log(amy);
+// console.log(neo);
 
 
+// 상속(확장)----------------------------------------------------------------
 
+// class Vehicle {
+//   constructor(name, wheel) {
+//     this.name = name;
+//     this.wheel = wheel;
+//   }
+// }
+// const myVehicle = new Vehicle('운송수단', 2);
+// console.log(myVehicle);
 
+// class Bicycle extends Vehicle {
+//   constructor(name, wheel) {
+//     // super은 Vehicle을 의미한다.
+//     super(name, wheel);
+//   }
+// }
+// const myBicycle = new Bicycle('자전거', 2);
+// const daughtersBicycle = new Bicycle('세발자전거', 3);
+// console.log(myBicycle);
+// console.log(daughtersBicycle);
 
+// // 상속 extends
+// class Car extends Vehicle {
+//   constructor(name, wheel, license) {
+//     super(name, wheel);
+//     this.license = license;
+//   }
+// }
+// const myCar = new Car('벤츠', 4, true);
+// const dasughersCar = new Car('포르쉐', 4, false);
+
+// console.log(myCar);
+// console.log(dasughersCar);
 
 
 
