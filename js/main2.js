@@ -170,31 +170,69 @@
 // console.log(a === b);
 
 
-const user = {
-  // key: value
-  name: 'wonseok',
-  age: 90,
-  email:'sws1552@gmail.com'
-};
+// const user = {
+//   // key: value
+//   name: 'wonseok',
+//   age: 90,
+//   email:'sws1552@gmail.com'
+// };
 
-// user객체의 키값들을 출력해서 배열로 반환
-const keys = Object.keys(user);
-console.log(keys);
+// // user객체의 키값들을 출력해서 배열로 반환
+// const keys = Object.keys(user);
+// console.log(keys);
 
-console.log(user['email']);
+// console.log(user['email']);
 
-const values1 = keys.map(key => user[key]);
-// const values2 = keys.map((key) => {
-//   return user[key];
-// });
-console.log(values1);
-
-
+// const values1 = keys.map(key => user[key]);
+// // const values2 = keys.map((key) => {
+// //   return user[key];
+// // });
+// console.log(values1);
 
 
 
+// 구조 분해 할당---------------------------------------------------------------------
+
+// const user = {
+//     // key: value
+//     name: 'wonseok',
+//     age: 90,
+//     email:'sws1552@gmail.com'
+// };
+
+// // address처럼 기본값을 지정할수 있다. user에 address란 key와 value가 있으면
+// // 기본값은 출력되지 않고 user의 address가 출력이된다.
+// // user안에 객체가 밑에 변수에 할당되서 출력이 가능하다.
+// const {name, age, email, address = 'korea'} = user;
+
+// console.log(`사용자의 이름은 ${name}입니다.`);
+// console.log(`${name}의 나이는 ${age}세입니다.`);
+// console.log(`${name}의 이메일 주소는 ${email}입니다.`);
+// console.log(address);
+
+// const fruits = ['Apple','Banana','Cherry'];
+// // 배열같은경우에는 인덱스 순서에맞게 변수에 할당된다.
+// const [a, b, c, d] = fruits;
+// console.log(a, b, c, d);
+// // Banana만 출력한다.
+// const [ , e] = fruits;
+// console.log(e);
 
 
+// 전개 연산자 (Spread)---------------------------------------------------------------------
+
+const fruits = ['Apple','Banana','Cherry'];
+console.log(fruits);
+console.log(...fruits);
+
+function toOblject(a, b, c) {
+  return {
+    a: a,
+    b: b,
+    c: c
+  };
+}
+console.log(toOblject(...fruits));
 
 
 
