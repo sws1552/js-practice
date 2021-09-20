@@ -1,3 +1,11 @@
+import _ from 'lodash';
+// import {getType,random} from '/js/getType';
+import * as getType_ranDom from '/js/getType';
+// import { random } from '/js/getRandom';
+import myData from '/json/myData.json';
+
+import axios from 'axios';
+
 // JS 데이터---------------------------------------------------------------------
 
 // String: "",'',``
@@ -221,56 +229,223 @@
 
 // 전개 연산자 (Spread)---------------------------------------------------------------------
 
-const fruits = ['Apple','Banana','Cherry'];
-console.log(fruits);
-console.log(...fruits);
+// const fruits = ['Apple','Banana','Cherry','Orange'];
+// console.log(fruits);
+// console.log(...fruits);
 
-function toOblject(a, b, c) {
-  return {
-    a: a,
-    b: b,
-    c: c
-  };
+// const toOblject = (a, b, ...c) => ({
+//   a: a,
+//   b: b,
+//   c: c});
+// console.log(toOblject(...fruits));
+
+
+// 데이터 불변성(Immutability)---------------------------------------------------------------------
+// 원시 데이터: String, Number, Boolean, undefined, null
+// 참조형 데이터: Object, Array, Function
+// -----------------------------------------------------
+// |1:          |2:         |3:         |4:
+// -----------------------------------------------------
+
+// let a = 1;
+// let b = 4;
+// console.log(a, b, a === b);
+// b = a;
+// console.log(a, b, a === b);
+// a = 7;
+// console.log(a, b, a === b);
+// let c = 1; 
+// console.log(b, c, b === c);
+
+
+// let a = {k: 1};
+// let b = {k: 1};
+// // 객체는 서로 다른 메모리 주소가 할당된다.
+// console.log(a, b, a === b);
+// a.k = 7;
+// // 이럴경우에는 이제 b 가 a의 메모리 주소를 바라보게 된다.
+// b = a;
+// console.log(a, b, a === b);
+// // a의 값이 바뀌면 b도 같은 메모리주소를 바라보기 때문에 
+// // b도 같이 수정된다.
+// a.k = 2;
+// console.log(a, b, a === b);
+// let c = b; 
+// console.log(a, b, c, a === c);
+// a.k = 9;
+// console.log(a, b, c, a===c);
+
+
+// 얕은 복사, 깊은 복사 (객체, 배열, 함수 해당)
+// const user = {
+//   name: 'wonseok',
+//   age: 85,
+//   emails: ['sws1552@gmail.com']
+// }
+// // 얕은 복사
+// // const copyUser = Object.assign({}, user);
+// // const copyUser = {...user};
+// // 깊은 복사
+// const copyUser = _.cloneDeep(user);
+
+// console.log(copyUser === user);
+
+// user.age = 22;
+// console.log('user !! ', user);
+// console.log('copyUser !! ', copyUser);
+
+// console.log('-------------------')
+// console.log('-------------------')
+
+// user.emails.push('neo@zillinks.com');
+// console.log(user.emails === copyUser.emails);
+// console.log('user !! ', user);
+// console.log('copyUser !! ', copyUser);
+
+// ---------------------------------------------------------------------------------------------
+
+// import _ from 'lodash';
+// import getType from './getType';
+// import getRandom from './getRandom';
+
+// console.log(_.camelCase('the hello world'));
+// // console.log(getType([1,2,3]));
+// // console.log(random(), random());
+// console.log(getType_ranDom.getType([1,2,3]));
+// console.log(getType_ranDom.random(), getType_ranDom.random());
+
+
+// lodash 라이브러리 자주 사용되는 함수 추천 ---------------------------------------------------------------------------------------------
+
+// import _ from 'lodash';
+
+// const usersA = [
+//   {userId: '1', name: 'wonseok'},
+//   {userId: '2', name: 'Neo'}
+// ]
+// const usersB = [
+//   {userId: '1', name: 'wonseok'},
+//   {userId: '3', name: 'Amy'}
+// ]
+// const usersC = usersA.concat(usersB);
+// console.log('concat ', usersC);
+// // 이미 중복된 데이터가 있는 배열은 uniqBy를 사용한다.
+// console.log('uniqBy ', _.uniqBy(usersC, 'userId'));
+
+// // 두개의 배열을 합치는데 중복된 객체를 없애고싶다면 unionBy를 사용한다.
+// const usersD = _.unionBy(usersA, usersB, 'userId');
+// console.log('unionBy ', usersD);
+
+// const users = [
+//   {userId: '1', name: 'wonseok'},
+//   {userId: '2', name: 'Neo'},
+//   {userId: '3', name: 'Amy'},
+//   {userId: '4', name: 'Evan'},
+//   {userId: '5', name: 'Lewis'}
+// ]
+
+// // users라는 배열데이터 안에 {name: 'Amy'} 을 가지고있는 객체데이터를 출력
+// const foundUser = _.find(users, {name: 'Amy'});
+// const foundUserIndex = _.findIndex(users, {name: 'Amy'});
+// console.log(foundUser);
+// console.log(foundUserIndex);
+
+// _.remove(users, {name: 'wonseok'});
+// console.log(users);
+
+
+
+// JSON (JavaScript Object Notation)------------------------------------------------------------------------------------------
+// 자바스크립트의 객체 표기법
+
+// const user = {
+//   name: 'wonseok',
+//   age: 90,
+//   emails: [
+//     'sws1552@gamil.com',
+//     'neo@zillinks.com'
+//   ]
+// }
+
+// console.log('user !! ',user);
+
+// const str = JSON.stringify(user);
+// console.log('str !! ',str);
+// console.log(typeof str);
+
+// const obj = JSON.parse(str);
+// console.log('obj !! ',obj);
+
+// console.log('jsonData !! ',myData);
+
+
+// Storage ----------------------------------------------------------------------------------------------------------------
+
+// const user = {
+//   name: 'wonseok',
+//   age: 90,
+//   emails: [
+//     'sws1552@gamil.com',
+//     'neo@zillinks.com'
+//   ]
+// }
+
+// // 추가
+// localStorage.setItem("user", JSON.stringify(user));
+// // 추가한 데이터 가져오기
+// console.log(JSON.parse(localStorage.getItem("user")));
+// // 추가한 데이터 지우기
+// localStorage.removeItem("user");
+// // 수정하기
+// const str = localStorage.getItem("user");
+// const obj = JSON.parse(str);
+// obj.age = 22;
+// console.log(obj);
+// localStorage.setItem("user", JSON.stringify(obj));
+
+
+// 쿼리 스트링-----------------------------------------------------------------------------------------------------------
+// 주소?속성=값&속성=값&속성=값.......
+
+// axios = 브라우저 및 node.js를 위한 Promise 기반 HTTP 클라이언트
+function fetchMovies() {
+  axios
+    .get('https://www.omdbapi.com/?apikey=7035c60c&s=frozen')
+    .then((res) => {
+
+      // console.log('res !! ',res);
+      const divEl = document.querySelector('#title_image');
+      console.log(divEl);
+      // h1El.textContent = res.data.Search[0].Title;
+      // imgEl.src = res.data.Search[0].Poster;
+      
+
+      for(let item in res.data.Search){
+
+        const data = res.data.Search[item];
+
+        for(let item2 in data) {
+
+          
+          if(item2 === "Title"){
+            const h1El = document.createElement('h1');
+            const imgEl = document.createElement('img');
+            divEl.append(h1El);
+            divEl.append(img);
+            // console.log(data[item2]);
+            // h1El.textContent = data[item2];
+          }else if(item2 === "Poster"){
+            // console.log(data[item2]);
+            // imgEl.src = data[item2];
+          }else {
+
+          }
+        }
+      }
+      
+    });
 }
-console.log(toOblject(...fruits));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+fetchMovies();
 
 
 
