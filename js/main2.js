@@ -414,34 +414,40 @@ function fetchMovies() {
     .then((res) => {
 
       // console.log('res !! ',res);
-      const divEl = document.querySelector('#title_image');
-      console.log(divEl);
+      const h1El = document.querySelector('h1');
+      const imgEl = document.querySelector('img');
+      h1El.textContent = res.data.Search[0].Title;
+      imgEl.src = res.data.Search[0].Poster;
+
+      // console.log('res !! ',res);
+      // const divEl = document.querySelector('#title_image');
+      // console.log(divEl);
       // h1El.textContent = res.data.Search[0].Title;
       // imgEl.src = res.data.Search[0].Poster;
       
 
-      for(let item in res.data.Search){
+      // for(let item in res.data.Search){
 
-        const data = res.data.Search[item];
+      //   const data = res.data.Search[item];
 
-        for(let item2 in data) {
+      //   for(let item2 in data) {
 
           
-          if(item2 === "Title"){
-            const h1El = document.createElement('h1');
-            const imgEl = document.createElement('img');
-            divEl.append(h1El);
-            divEl.append(img);
-            // console.log(data[item2]);
-            // h1El.textContent = data[item2];
-          }else if(item2 === "Poster"){
-            // console.log(data[item2]);
-            // imgEl.src = data[item2];
-          }else {
+      //     if(item2 === "Title"){
+      //       const h1El = document.createElement('h1');
+      //       const imgEl = document.createElement('img');
+      //       divEl.append(h1El);
+      //       divEl.append(img);
+      //       // console.log(data[item2]);
+      //       // h1El.textContent = data[item2];
+      //     }else if(item2 === "Poster"){
+      //       // console.log(data[item2]);
+      //       // imgEl.src = data[item2];
+      //     }else {
 
-          }
-        }
-      }
+      //     }
+      //   }
+      // }
       
     });
 }
